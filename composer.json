@@ -1,0 +1,17 @@
+{
+    "name": "stanimir/phpinfo",
+    "description": "WordPress plugin that displays basic php system information",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stanimir",
+            "email": "stanimir.k.stoyanov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Php_Info\\": "src/",
+        }
+    }
+}
