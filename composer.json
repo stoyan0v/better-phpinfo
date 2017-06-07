@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Php_Info\\": "src/",
+            "Php_Info\\": "src/"
         }
     }
 }
