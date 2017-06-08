@@ -1,85 +1,61 @@
-/*global module:false*/
 module.exports = function(grunt) {
-
   // Project configuration.
   grunt.initConfig({
-    // Metadata.
-    meta: {
-      version: '0.1.0'
-    },
-    banner: '/*! PROJECT_NAME - v<%= meta.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '* http://PROJECT_WEBSITE/\n' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-      'YOUR_NAME; Licensed MIT */\n',
-    // Task configuration.
+    pkg: grunt.file.readJSON('package.json'),
     concat: {
       options: {
-        banner: '<%= banner %>',
-        stripBanners: true
+        separator: "\n", //add a new line after each file
+        banner: "", //added before everything
+        footer: "" //added after everything
       },
-      dist: {
-        src: ['lib/FILE_NAME.js'],
-        dest: 'dist/FILE_NAME.js'
+      css: {
+          src: [
+          'assets/**/*.css'
+          ],
+          dest: 'dist/css/main.css'
+      },
+      js: {
+        // the files to concatenate
+        src: [
+          //include libs
+          'assets/**/*.js',
+        ],
+        // the location of the resulting JS file
+        dest: 'dist/js/main.js'
       }
     },
     uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
       dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/FILE_NAME.min.js'
-      }
-    },
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {
-          jQuery: true
+        files: {
+          'dist/js/main.min.js': ['<%= concat.js.dest %>'],
         }
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'dist/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dist/css',
+          ext: '.min.css'
+        }]
+      }
     },
     watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+      files: ['assets/**/*.js', 'assets/**/*.css'],
+      tasks: ['concat', 'uglify', 'cssmin'],
+      options: {
+        interrupt: true
       }
     }
-  });
+  }); 
 
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
+  //register the task
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
 };

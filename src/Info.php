@@ -35,7 +35,7 @@ class Info {
 	 */
 	public function admin_enqueue_scripts() {
 		// Load the plugin javascript
-		wp_enqueue_script( 'php-info-functions', plugins_url( '../assets/', __FILE__ ) . '/js/functions.js', array( 'jquery' ) );
+		wp_enqueue_script( 'php-info-functions', plugins_url( '../dist/', __FILE__ ) . '/js/main.min.js', array( 'jquery' ) );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Info {
 	 */
 	public function admin_enqueue_styles() {
 		// Load the plugin main styles
-		wp_enqueue_style( 'php-info-styles', plugins_url( '../assets/', __FILE__ ) . '/css/style.css' );
+		wp_enqueue_style( 'php-info-styles', plugins_url( '../dist/', __FILE__ ) . '/css/main.min.css' );
 	}
 
 	/**
