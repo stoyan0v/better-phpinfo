@@ -11,6 +11,12 @@ class Info {
 
 		// Add plugin options page to main settings
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+
+		// Enqueue admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+
+		// Enqueue admin styles
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ) );
 	}
 
 	/**
@@ -20,6 +26,26 @@ class Info {
 	public function load_textdomain() {
 		// initialize translations
 		load_plugin_textdomain( 'php-info', false, PHP_INFO_DIR . '/languages' );
+	}
+
+	/**
+	 * Enqueue main plugin scripts in administration.
+	 *
+	 * @access public
+	 */
+	public function admin_enqueue_scripts() {
+		// Load the plugin javascript
+		wp_enqueue_script( 'php-info-functions', plugins_url( '../assets/', __FILE__ ) . '/js/functions.js', array( 'jquery' ) );
+	}
+
+	/**
+	 * Enqueue main plugin styles in administration.
+	 *
+	 * @access public
+	 */
+	public function admin_enqueue_styles() {
+		// Load the plugin main styles
+		wp_enqueue_style( 'php-info-styles', plugins_url( '../assets/', __FILE__ ) . '/css/style.css' );
 	}
 
 	/**
@@ -66,12 +92,12 @@ class Info {
 	}
 
 	/**
-	 * Display php_info information without styles.
+	 * Display phpinfo information without styles.
 	 *
 	 * @access public
 	 */
 	public function display_info() {
-		// Get php_info content in var
+		// Get phpinfo content in var
 		ob_start();
 		phpinfo();
 		$content = ob_get_clean();
