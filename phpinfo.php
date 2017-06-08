@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: Php Info
- * Description: Php Info
+ * Plugin Name: Better PHP Info
+ * Description: Better PHP Info
  * Author: Stanimir Stoyanov
- * Text Domain: php-info
+ * Text Domain: better-php-info
 */
 
 namespace Php_Info;

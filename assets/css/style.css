@@ -6,7 +6,8 @@
 .phpinfo-content .center {text-align: center;}
 .phpinfo-content .center table {margin: 1em auto; text-align: left;}
 .phpinfo-content .center th {text-align: center !important;}
-.phpinfo-content td, th {border: 1px solid #666; font-size: 75%; vertical-align: baseline; padding: 4px 5px;}
+.phpinfo-content td,
+.phpinfo-content th {border: 1px solid #666; font-size: 90%; vertical-align: baseline; padding: 4px 5px;}
 .phpinfo-content h1 {font-size: 150%;}
 .phpinfo-content h2 {font-size: 125%;}
 .phpinfo-content .p {text-align: left;}

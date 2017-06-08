@@ -25,7 +25,7 @@ class Info {
 	 */
 	public function load_textdomain() {
 		// initialize translations
-		load_plugin_textdomain( 'php-info', false, PHP_INFO_DIR . '/languages' );
+		load_plugin_textdomain( 'better-php-info', false, PHP_INFO_DIR . '/languages' );
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Info {
 	 */
 	public function admin_enqueue_scripts() {
 		// Load the plugin javascript
-		wp_enqueue_script( 'php-info-functions', plugins_url( '../dist/', __FILE__ ) . '/js/main.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'better-php-info-functions', plugins_url( '../dist/', __FILE__ ) . '/js/main.min.js', array( 'jquery' ) );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Info {
 	 */
 	public function admin_enqueue_styles() {
 		// Load the plugin main styles
-		wp_enqueue_style( 'php-info-styles', plugins_url( '../dist/', __FILE__ ) . '/css/main.min.css' );
+		wp_enqueue_style( 'better-php-info-styles', plugins_url( '../dist/', __FILE__ ) . '/css/main.min.css' );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Info {
 	 */
 	public function get_menu_title() {
 		// allow filtering the title of the submenu page
-		$menu_title = apply_filters('php_info_menu_item_title', __( 'Php Info', 'php-info' ) );
+		$menu_title = apply_filters('php_info_menu_item_title', __( 'Better PHP Info', 'better-php-info' ) );
 
 		return $menu_title;
 	}
