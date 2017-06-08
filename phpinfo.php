@@ -5,10 +5,17 @@
  * Author: Stanimir Stoyanov
  * Text Domain: php-info
 */
+
 namespace Php_Info;
 use Php_Info\Info;
 
-require( __DIR__ . '/vendor/autoload.php' );
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
 
+if ( ! defined( 'PHPINFO_DIR' ) ) {
+	define( 'PHP_INFO_DIR' , dirname( __FILE__ ) );
+}
+
+require( PHP_INFO_DIR . '/vendor/autoload.php' );
 
 new Info();
