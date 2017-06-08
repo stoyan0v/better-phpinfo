@@ -3,5 +3,9 @@
 		<h2>
 			<?php echo $this->get_menu_title(); ?>
 		</h2>
-	</div>
-</div>
+
+		<div class="phpinfo-content">
+			<?php $this->display_info(); ?>
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+</div><!-- /.phpinfo-wrapper -->

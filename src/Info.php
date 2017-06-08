@@ -64,4 +64,22 @@ class Info {
 	public function render() {
 		include_once( PHP_INFO_DIR . '/templates/options.php' );
 	}
+
+	/**
+	 * Display php_info information without styles.
+	 *
+	 * @access public
+	 */
+	public function display_info() {
+		// Get php_info content in var
+		ob_start();
+		phpinfo();
+		$content = ob_get_clean();
+
+		// Get only body content without styles
+		$content = preg_replace( '%^.*<body>(.*)</body>.*$%ms', '$1', $content );
+
+		// Display content
+		echo $content;
+	}
 }
