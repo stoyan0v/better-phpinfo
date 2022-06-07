@@ -2,6 +2,7 @@
 
 ### Installation
 
+
 CD into your Plugins directory
 
 ```
